@@ -1,5 +1,5 @@
 //
-//  AllGroupTableViewController.swift
+//  MyGroupTableViewController.swift
 //  VkLoginApp
 //
 //  Created by Konstantin on 20.10.2021.
@@ -7,28 +7,40 @@
 
 import UIKit
 
-class AllGroupTableViewController: UITableViewController {
+class MyGroupTableViewController: UITableViewController {
     
-    var allGroup: [Group] = []
+    var myGroup: [Group] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        allGroup = Group.takeGroupe(count: 5)
+
         
+        
+    }
+    
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        let allGroupVC = segue.source as! AllGroupTableViewController
+        guard let indexPath = allGroupVC.tableView.indexPathForSelectedRow else { return }
+        myGroup.append(allGroupVC.allGroup[indexPath.row])
+        allGroupVC.allGroup.remove(at: indexPath.row)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGroup.count
+        return myGroup.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupCell", for: indexPath) as! UserCell
-
-        let group = allGroup[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myGroupCell", for: indexPath) as! UserCell
         
+        let group = myGroup[indexPath.row]
+
         cell.nameLabel.text = group.name
         cell.imageUser.image = group.image
 

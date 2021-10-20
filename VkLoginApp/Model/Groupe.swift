@@ -1,5 +1,5 @@
 //
-//  Groupe.swift
+//  Group.swift
 //  VkLoginApp
 //
 //  Created by Konstantin on 20.10.2021.

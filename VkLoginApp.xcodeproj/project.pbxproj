@@ -21,6 +21,7 @@
 		3C9502FF271FFB720095D92F /* AllGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9502FE271FFB720095D92F /* AllGroupTableViewController.swift */; };
 		3C950301271FFECD0095D92F /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C950300271FFECD0095D92F /* PhotoCollectionViewController.swift */; };
 		3C950305272016670095D92F /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C950304272016670095D92F /* PhotoCell.swift */; };
+		3C950307272018D20095D92F /* MyGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C950306272018D20095D92F /* MyGroupTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		3C9502FE271FFB720095D92F /* AllGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupTableViewController.swift; sourceTree = "<group>"; };
 		3C950300271FFECD0095D92F /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		3C950304272016670095D92F /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		3C950306272018D20095D92F /* MyGroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				3C2DAAA72717171400D0554E /* ViewController.swift */,
 				3C9502F3271FF1C10095D92F /* FriendsTableViewController.swift */,
 				3C950300271FFECD0095D92F /* PhotoCollectionViewController.swift */,
+				3C950306272018D20095D92F /* MyGroupTableViewController.swift */,
 				3C9502FE271FFB720095D92F /* AllGroupTableViewController.swift */,
 			);
 			path = Controller;
@@ -224,6 +227,7 @@
 				3C2DAAA42717171400D0554E /* AppDelegate.swift in Sources */,
 				3C9502FF271FFB720095D92F /* AllGroupTableViewController.swift in Sources */,
 				3C950301271FFECD0095D92F /* PhotoCollectionViewController.swift in Sources */,
+				3C950307272018D20095D92F /* MyGroupTableViewController.swift in Sources */,
 				3C9502F7271FF26B0095D92F /* LoremSwiftum.swift in Sources */,
 				3C2DAAA62717171400D0554E /* SceneDelegate.swift in Sources */,
 				3C9502F4271FF1C10095D92F /* FriendsTableViewController.swift in Sources */,
