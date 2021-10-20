@@ -20,6 +20,17 @@ class FriendsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let userIndex = tableView.indexPathForSelectedRow else { return }
+        
+        guard segue.identifier == "photoSegue" else { return }
+        guard let photoVC = segue.destination as? PhotoCollectionViewController else { return }
+        
+        photoVC.user = users[userIndex.row]
+
+    }
 
     // MARK: - Table view data source
 
@@ -34,7 +45,7 @@ class FriendsTableViewController: UITableViewController {
 
         let user = users[indexPath.row]
         cell.nameLabel.text = user.fullName
-        cell.imageUser.image = user.image
+        cell.imageUser.image = user.image.first
 
         return cell
     }

@@ -11,7 +11,7 @@ struct User {
     let name: String
     let lastName: String
     let age: Int?
-    let image: UIImage
+    let image: [UIImage]
     var fullName: String {
         return self.name + " " + self.lastName
     }
@@ -23,7 +23,8 @@ struct User {
             users.append(User(name: Lorem.firstName,
                               lastName: Lorem.lastName,
                               age: Int.random(in: 18...55),
-                              image: UIImage(systemName: "person.circle.fill")!))
+                              image: [UIImage(systemName: "person.circle.fill")!,
+                                      UIImage(systemName: "person.circle")!]))
         }
         
         return users
