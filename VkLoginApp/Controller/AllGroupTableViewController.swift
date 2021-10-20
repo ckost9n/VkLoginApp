@@ -9,11 +9,10 @@ import UIKit
 
 class AllGroupTableViewController: UITableViewController {
     
-    var allGroup: [Group] = []
+    var allGroup = Group.takeGroupe(count: 50)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        allGroup = Group.takeGroupe(count: 5)
         
     }
 

@@ -9,11 +9,7 @@ import UIKit
 
 class MyGroupTableViewController: UITableViewController {
     
-    var myGroup: [Group] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var myGroup: [Group] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +19,19 @@ class MyGroupTableViewController: UITableViewController {
     }
     
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
-        let allGroupVC = segue.source as! AllGroupTableViewController
-        guard let indexPath = allGroupVC.tableView.indexPathForSelectedRow else { return }
-        myGroup.append(allGroupVC.allGroup[indexPath.row])
-        allGroupVC.allGroup.remove(at: indexPath.row)
+        guard
+            let allGroupVC = segue.source as? AllGroupTableViewController,
+            let indexPath = allGroupVC.tableView.indexPathForSelectedRow
+        else { return }
+        let group = allGroupVC.allGroup[indexPath.row]
+        
+        for newGroup in myGroup {
+            guard newGroup.name != group.name  else { return }
+        }
+        
+        myGroup.append(group)
+        tableView.reloadData()
+        
     }
 
     // MARK: - Table view data source
