@@ -9,33 +9,40 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
-    private let users = User.takeUser(count: 100)
+    private var users: [User] = []
+    private var filteredUsers: [User] = []
+    let seaerchController = UISearchController(searchResultsController: nil)
+    
+    var isSearchBarEmpty: Bool {
+        return seaerchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return seaerchController.isActive && !isSearchBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        users = User.takeUser(count: 50)
+        setupSearchController()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let userIndex = tableView.indexPathForSelectedRow else { return }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
         guard segue.identifier == "photoSegue" else { return }
         guard let photoVC = segue.destination as? PhotoCollectionViewController else { return }
         
-        photoVC.user = users[userIndex.row]
+        photoVC.user = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
 
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            
+        if isFiltering {
+            return filteredUsers.count
+        }
         return users.count
     }
 
@@ -43,7 +50,8 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserCell
 
-        let user = users[indexPath.row]
+        let user: User = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
         cell.nameLabel.text = user.fullName
         cell.imageUser.image = user.image.first
 
@@ -96,4 +104,30 @@ class FriendsTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: - SearchBarController
+
+extension FriendsTableViewController: UISearchResultsUpdating {
+    
+    func setupSearchController() {
+        seaerchController.searchResultsUpdater = self
+        seaerchController.obscuresBackgroundDuringPresentation = false
+        seaerchController.searchBar.placeholder = "Search Friends"
+        navigationItem.searchController = seaerchController
+        definesPresentationContext = true
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredUsers = users.filter { (user: User) -> Bool in
+            return user.fullName.lowercased().contains(searchText.lowercased())
+        }
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
 }

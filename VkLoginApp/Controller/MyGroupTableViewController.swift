@@ -23,7 +23,7 @@ class MyGroupTableViewController: UITableViewController {
             let allGroupVC = segue.source as? AllGroupTableViewController,
             let indexPath = allGroupVC.tableView.indexPathForSelectedRow
         else { return }
-        let group = allGroupVC.allGroup[indexPath.row]
+        let group = allGroupVC.isFiltering ? allGroupVC.filteredGroup[indexPath.row] : allGroupVC.allGroup[indexPath.row]
         
         for newGroup in myGroup {
             guard newGroup.name != group.name  else { return }

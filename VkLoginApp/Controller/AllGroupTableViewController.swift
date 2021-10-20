@@ -9,16 +9,29 @@ import UIKit
 
 class AllGroupTableViewController: UITableViewController {
     
-    var allGroup = Group.takeGroupe(count: 50)
+    var allGroup: [Group] = []
+    var filteredGroup: [Group] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    var isSearBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return searchController.isActive && !isSearBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        allGroup = Group.takeGroupe(count: 100)
+        setupSearchController()
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredGroup.count
+        }
         return allGroup.count
     }
 
@@ -26,7 +39,7 @@ class AllGroupTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupCell", for: indexPath) as! UserCell
 
-        let group = allGroup[indexPath.row]
+        let group: Group = isFiltering ? filteredGroup[indexPath.row] : allGroup[indexPath.row]
         
         cell.nameLabel.text = group.name
         cell.imageUser.image = group.image
@@ -80,4 +93,30 @@ class AllGroupTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: - UISearchBarController
+
+extension AllGroupTableViewController: UISearchResultsUpdating {
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Group"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredGroup = allGroup.filter { (group: Group) -> Bool in
+            return group.name.lowercased().contains(searchText.lowercased())
+        }
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
 }
