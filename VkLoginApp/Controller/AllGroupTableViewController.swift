@@ -1,5 +1,5 @@
 //
-//  FriendsTableViewController.swift
+//  AllGroupTableViewController.swift
 //  VkLoginApp
 //
 //  Created by Konstantin on 20.10.2021.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class FriendsTableViewController: UITableViewController {
+class AllGroupTableViewController: UITableViewController {
     
-    private let users = User.takeUser(count: 100)
+    private let groupes = Group.takeGroupe(count: 50)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,17 +24,17 @@ class FriendsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            
-        return users.count
+        return groupes.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupCell", for: indexPath) as! UserCell
 
-        let user = users[indexPath.row]
-        cell.nameLabel.text = user.fullName
-        cell.imageUser.image = user.image
+        let groupe = groupes[indexPath.row]
+        
+        cell.nameLabel.text = groupe.name
+        cell.imageUser.image = groupe.image
 
         return cell
     }

@@ -42,20 +42,45 @@
         <!--Root View Controller-->
         <scene sceneID="LPz-yp-7Cf">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="jgk-DG-GGD" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="jgk-DG-GGD" customClass="AllGroupTableViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wiD-Ft-0LI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="maR-QA-JUQ">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="allGroupCell" id="maR-QA-JUQ" customClass="UserCell" customModule="VkLoginApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="50.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="maR-QA-JUQ" id="T41-sf-4CE">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gn8-PC-tws">
+                                            <rect key="frame" x="20" y="0.0" width="50" height="50.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Qr9-r9-cbM"/>
+                                                <constraint firstAttribute="height" constant="50" id="tNJ-Zm-zFC"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dcp-eW-L50">
+                                            <rect key="frame" x="90" y="15" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Dcp-eW-L50" secondAttribute="trailing" constant="20" symbolic="YES" id="GRA-nh-ain"/>
+                                        <constraint firstAttribute="bottom" secondItem="Gn8-PC-tws" secondAttribute="bottom" id="bLm-xk-c0c"/>
+                                        <constraint firstItem="Gn8-PC-tws" firstAttribute="leading" secondItem="T41-sf-4CE" secondAttribute="leading" constant="20" symbolic="YES" id="evf-iT-5Fh"/>
+                                        <constraint firstItem="Gn8-PC-tws" firstAttribute="top" secondItem="T41-sf-4CE" secondAttribute="top" id="pw8-8t-CdI"/>
+                                        <constraint firstItem="Dcp-eW-L50" firstAttribute="leading" secondItem="Gn8-PC-tws" secondAttribute="trailing" constant="20" id="ynW-sF-yFD"/>
+                                        <constraint firstItem="Dcp-eW-L50" firstAttribute="centerY" secondItem="T41-sf-4CE" secondAttribute="centerY" id="zA9-gL-Bhm"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="imageUser" destination="Gn8-PC-tws" id="lhZ-cr-HZh"/>
+                                    <outlet property="nameLabel" destination="Dcp-eW-L50" id="3gd-NM-xBI"/>
                                     <segue destination="R4L-4v-a38" kind="show" id="Sx5-zl-bNI"/>
                                 </connections>
                             </tableViewCell>
@@ -69,7 +94,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Onl-6R-hki" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616" y="427"/>
+            <point key="canvasLocation" x="2615.9420289855075" y="426.5625"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="mHr-6C-WtZ">
