@@ -11,6 +11,8 @@ class FriendsTableViewController: UITableViewController {
     
     private var users: [User] = []
     private var filteredUsers: [User] = []
+    private var sectionsFiltered: [String] = []
+    private var sections: [String] = []
     let seaerchController = UISearchController(searchResultsController: nil)
     
     var isSearchBarEmpty: Bool {
@@ -22,42 +24,59 @@ class FriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        users = User.takeUser(count: 50)
+        setupData()
         setupSearchController()
+    }
+    
+    func setupData() {
+        users = User.takeUser(count: 50).sorted { $0.name < $1.name }
+        let leterUser = Set(users.map ({ String($0.name.prefix(1).capitalized) }))
+        sections = Array(leterUser).sorted()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let user = itemsInSection(indexPath.section)[indexPath.row]
         
         guard segue.identifier == "photoSegue" else { return }
         guard let photoVC = segue.destination as? PhotoCollectionViewController else { return }
         
-        photoVC.user = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
+        photoVC.user = user
 
     }
 
     // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredUsers.count
-        }
-        return users.count
+    
+    func itemsInSection(_ section: Int) -> [User] {
+        let letter = isFiltering ? sectionsFiltered[section] : sections[section]
+        return isFiltering ? filteredUsers.filter {
+            $0.name.hasPrefix(letter) } : users.filter { $0.name.hasPrefix(letter)
+            }
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return isFiltering ? sectionsFiltered.count : sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return isFiltering ? sectionsFiltered[section] : sections[section]
     }
 
-    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemsInSection(section).count
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as! UserCell
-
-        let user: User = isFiltering ? filteredUsers[indexPath.row] : users[indexPath.row]
+        
+        let user = itemsInSection(indexPath.section)[indexPath.row]
         
         cell.nameLabel.text = user.fullName
         cell.imageUser.image = user.image.first
 
         return cell
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
@@ -122,6 +141,8 @@ extension FriendsTableViewController: UISearchResultsUpdating {
         filteredUsers = users.filter { (user: User) -> Bool in
             return user.fullName.lowercased().contains(searchText.lowercased())
         }
+        let leterFilteredUser = Set(filteredUsers.map ({ String($0.name.prefix(1).capitalized) }))
+        sectionsFiltered = Array(leterFilteredUser).sorted()
         tableView.reloadData()
     }
     

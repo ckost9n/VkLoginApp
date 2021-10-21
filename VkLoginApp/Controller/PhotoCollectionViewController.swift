@@ -41,7 +41,8 @@ class PhotoCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! PhotoCell
     
         cell.imageUser.image = user?.image[indexPath.row]
-    
+        print(user!.fullName)
+        
         return cell
     }
 
