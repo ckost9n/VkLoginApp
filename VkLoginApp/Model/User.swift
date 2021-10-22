@@ -13,7 +13,7 @@ struct User {
     let age: Int?
     let image: [UIImage]
     var fullName: String {
-        return self.name + " " + self.lastName
+        return self.lastName + " " + self.name
     }
     
     static func takeUser(count: Int) -> [User] {

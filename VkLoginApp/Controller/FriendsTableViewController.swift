@@ -29,8 +29,8 @@ class FriendsTableViewController: UITableViewController {
     }
     
     func setupData() {
-        users = User.takeUser(count: 50).sorted { $0.name < $1.name }
-        let leterUser = Set(users.map ({ String($0.name.prefix(1).capitalized) }))
+        users = User.takeUser(count: 50).sorted { $0.lastName < $1.lastName }
+        let leterUser = Set(users.map ({ String($0.lastName.prefix(1).capitalized) }))
         sections = Array(leterUser).sorted()
     }
     
@@ -51,7 +51,7 @@ class FriendsTableViewController: UITableViewController {
     func itemsInSection(_ section: Int) -> [User] {
         let letter = isFiltering ? sectionsFiltered[section] : sections[section]
         return isFiltering ? filteredUsers.filter {
-            $0.name.hasPrefix(letter) } : users.filter { $0.name.hasPrefix(letter)
+            $0.lastName.hasPrefix(letter) } : users.filter { $0.lastName.hasPrefix(letter)
             }
     }
     
@@ -61,6 +61,10 @@ class FriendsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return isFiltering ? sectionsFiltered[section] : sections[section]
+    }
+    
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return isFiltering ? sectionsFiltered : sections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,7 +145,7 @@ extension FriendsTableViewController: UISearchResultsUpdating {
         filteredUsers = users.filter { (user: User) -> Bool in
             return user.fullName.lowercased().contains(searchText.lowercased())
         }
-        let leterFilteredUser = Set(filteredUsers.map ({ String($0.name.prefix(1).capitalized) }))
+        let leterFilteredUser = Set(filteredUsers.map ({ String($0.lastName.prefix(1).capitalized) }))
         sectionsFiltered = Array(leterFilteredUser).sorted()
         tableView.reloadData()
     }
