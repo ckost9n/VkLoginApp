@@ -86,7 +86,7 @@
                                         <state key="normal" title="" image="heart" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                         <connections>
-                                            <action selector="likeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Fq0-Rg-X8N"/>
+                                            <action selector="likeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QgQ-GS-fAk"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -106,7 +106,7 @@
                 <outlet property="autorLabel" destination="MKk-pP-MQm" id="xup-al-PFV"/>
                 <outlet property="collectionView" destination="1eZ-YT-aMQ" id="ZHK-PA-DEo"/>
                 <outlet property="dateLabel" destination="KL2-CP-JQg" id="SG2-fS-Pae"/>
-                <outlet property="likeButton" destination="Mu5-TL-ch1" id="IoE-wm-M4V"/>
+                <outlet property="likeButton" destination="Mu5-TL-ch1" id="tZg-wr-MDT"/>
                 <outlet property="likeCount" destination="clz-9N-Byd" id="I6P-UU-iqk"/>
                 <outlet property="mainImageView" destination="LTC-cQ-JJx" id="VIN-TJ-bfK"/>
                 <outlet property="newsText" destination="2oM-i9-Kfl" id="fre-ye-DRi"/>

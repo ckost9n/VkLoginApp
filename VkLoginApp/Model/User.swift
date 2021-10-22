@@ -10,7 +10,8 @@ import UIKit
 struct User {
     let name: String
     let lastName: String
-    let age: Int?
+    var likeCount: Int
+    var isLike: Bool
     let image: [UIImage]
     var fullName: String {
         return self.lastName + " " + self.name
@@ -24,7 +25,8 @@ struct User {
                 User(
                     name: Lorem.firstName,
                     lastName: Lorem.lastName,
-                    age: Int.random(in: 18...55),
+                    likeCount: Int.random(in: 1...9999999),
+                    isLike: false,
                     image: (1...Int.random(in: 1...10))
                         .map { $0 % 5 }
                         .shuffled()

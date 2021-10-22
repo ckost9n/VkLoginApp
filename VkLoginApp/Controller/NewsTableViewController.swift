@@ -9,7 +9,7 @@ import UIKit
 
 class NewsTableViewController: UITableViewController {
     
-    let news = News.fake
+    var news = News.fake
 
     override func viewDidLoad() {
         super.viewDidLoad()
