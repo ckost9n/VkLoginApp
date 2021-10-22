@@ -16,8 +16,12 @@ struct Group {
         var groupes: [Group] = []
         
         for _ in 0...count {
-            groupes.append(Group(name: Lorem.words(1...3),
-                                 image: UIImage(systemName: "person.2.crop.square.stack.fill")!))
+            groupes.append(
+                Group(
+                    name: Lorem.words(1...3),
+                    image: UIImage(named: String(Int.random(in: 1...6)))!
+                )
+            )
         }
         
         return groupes

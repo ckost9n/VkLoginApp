@@ -20,11 +20,18 @@ struct User {
         var users: [User] = []
         
         for _ in 0...count {
-            users.append(User(name: Lorem.firstName,
-                              lastName: Lorem.lastName,
-                              age: Int.random(in: 18...55),
-                              image: [UIImage(systemName: "person.circle.fill")!,
-                                      UIImage(systemName: "person.circle")!]))
+            users.append(
+                User(
+                    name: Lorem.firstName,
+                    lastName: Lorem.lastName,
+                    age: Int.random(in: 18...55),
+                    image: (1...Int.random(in: 1...10))
+                        .map { $0 % 5 }
+                        .shuffled()
+                        .compactMap({ String($0) })
+                        .compactMap({ UIImage(named: $0) })
+                )
+            )
         }
         
         return users

@@ -14,6 +14,17 @@ class NewsCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var newsText: UILabel!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var likeCount: UILabel!
+    @IBOutlet var likeButton: UIButton!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        mainImageView.layer.cornerRadius = mainImageView.bounds.width / 2
+    }
+    
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
+        
+    }
     
     func configure(model: News) {
         mainImageView.image = model.images.first
