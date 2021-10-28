@@ -7,6 +7,18 @@
 
 import UIKit
 
+// MARK: - WelcomeElement
+struct PostsElement: Codable {
+    let userID, id: Int
+    let title, body: String
+
+    enum CodingKeys: String, CodingKey {
+        case userID = "userId"
+        case id, title, body
+    }
+}
+typealias Post = [PostsElement]
+
 struct News {
     var autor: String
     var postDate: String

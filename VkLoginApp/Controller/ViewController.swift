@@ -11,11 +11,16 @@ import Alamofire
 
 class ViewController: UIViewController {
     
-    @IBOutlet var webView: WKWebView!
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.navigationDelegate = self
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        webView.navigationDelegate = self
+//        cleanWebViewCookies()    // Откл. автоматический вхов в веб форму
+//        TestUrlSession.shared.getPost()
         loadVKAuth()
         
     }
@@ -91,6 +96,21 @@ extension ViewController: WKNavigationDelegate {
         decisionHandler(.cancel)
     }
     
-        
     
+    // MARK: - CleanWebView
+    
+    func cleanWebViewCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default()
+            .fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default()
+                    .removeData(ofTypes: record.dataTypes,
+                                for: [record],
+                                completionHandler: {}
+                )
+            }
+        }
+    }
+
 }

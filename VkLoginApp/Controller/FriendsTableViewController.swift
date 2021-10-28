@@ -9,6 +9,8 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
+    lazy var service = VKService()
+    
     private var users: [User] = []
     private var filteredUsers: [User] = []
     private var sectionsFiltered: [String] = []
@@ -26,6 +28,10 @@ class FriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         setupData()
         setupSearchController()
+        
+        service.getData(.friends) { (friends) in
+            print(friends)
+        }
     }
     
     func setupData() {

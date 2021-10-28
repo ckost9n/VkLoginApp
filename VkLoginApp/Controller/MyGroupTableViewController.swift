@@ -9,12 +9,16 @@ import UIKit
 
 class MyGroupTableViewController: UITableViewController {
     
+    lazy var service = VKService()
+    
     var myGroup: [Group] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        service.getData(.group) { (group) in
+            print(group)
+        }
         
     }
     

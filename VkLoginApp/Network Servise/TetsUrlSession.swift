@@ -76,12 +76,21 @@ class TestUrlSession {
         
         AF.request(urlPath).responseJSON { response in
             print(response.value ?? "No JSON")
-//            switch response {
-//            case let .success(value):
-//                print(value)
-//            case let .failure(error):
-//                print(error)
-//            }
+            
+        }
+    }
+    
+    func getPost() {
+        let urlPath = "https://jsonplaceholder.typicode.com/posts"
+        
+        let request = AF.request(urlPath)
+        request.responseJSON { (data) in
+            print(data)
+        }
+        
+        AF.request(urlPath).responseDecodable(of: Post.self) { (response) in
+            guard let posts = response.value else { return }
+            print(posts)
         }
     }
     
