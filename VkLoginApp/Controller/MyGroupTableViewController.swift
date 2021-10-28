@@ -33,6 +33,19 @@ class MyGroupTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            self.myGroup.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        deleteAction.backgroundColor = .red
+        
+        let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        return swipeAction
+    }
 
     // MARK: - Table view data source
 

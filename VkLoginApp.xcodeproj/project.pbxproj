@@ -28,6 +28,11 @@
 		3C9503132722C44A0095D92F /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9503112722C44A0095D92F /* NewsCell.xib */; };
 		3C9503162722DE970095D92F /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9503142722DE970095D92F /* PhotoCollectionCell.swift */; };
 		3C9503172722DE970095D92F /* PhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9503152722DE970095D92F /* PhotoCollectionCell.xib */; };
+		3CCBC09D2729D36800747BC7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC09C2729D36800747BC7 /* Session.swift */; };
+		3CCBC09F272A838F00747BC7 /* TetsUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */; };
+		3CCBC0A2272AA33300747BC7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3CCBC0A1272AA33300747BC7 /* Alamofire */; };
+		3CCBC0A4272AA8E000747BC7 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC0A3272AA8E000747BC7 /* VKService.swift */; };
+		3CCBC0A7272AAB5600747BC7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCBC0A6272AAB5600747BC7 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +59,10 @@
 		3C9503112722C44A0095D92F /* NewsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		3C9503142722DE970095D92F /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		3C9503152722DE970095D92F /* PhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionCell.xib; sourceTree = "<group>"; };
+		3CCBC09C2729D36800747BC7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetsUrlSession.swift; sourceTree = "<group>"; };
+		3CCBC0A3272AA8E000747BC7 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		3CCBC0A6272AAB5600747BC7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCBC0A7272AAB5600747BC7 /* WebKit.framework in Frameworks */,
+				3CCBC0A2272AA33300747BC7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +83,7 @@
 			children = (
 				3C2DAAA22717171400D0554E /* VkLoginApp */,
 				3C2DAAA12717171400D0554E /* Products */,
+				3CCBC0A5272AAB5600747BC7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,10 +102,21 @@
 				3C9502EC271FEDC30095D92F /* Model */,
 				3C9502ED271FEDD50095D92F /* View */,
 				3C9502EE271FEDDB0095D92F /* Controller */,
+				3C8EBB622729867C0088F9FE /* Network Servise */,
 				3C9502F5271FF2440095D92F /* Supporting files */,
 				3C2DAAB12717171900D0554E /* Info.plist */,
 			);
 			path = VkLoginApp;
+			sourceTree = "<group>";
+		};
+		3C8EBB622729867C0088F9FE /* Network Servise */ = {
+			isa = PBXGroup;
+			children = (
+				3CCBC09C2729D36800747BC7 /* Session.swift */,
+				3CCBC0A3272AA8E000747BC7 /* VKService.swift */,
+				3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */,
+			);
+			path = "Network Servise";
 			sourceTree = "<group>";
 		};
 		3C9502EC271FEDC30095D92F /* Model */ = {
@@ -168,6 +191,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		3CCBC0A5272AAB5600747BC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CCBC0A6272AAB5600747BC7 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,6 +215,9 @@
 			dependencies = (
 			);
 			name = VkLoginApp;
+			packageProductDependencies = (
+				3CCBC0A1272AA33300747BC7 /* Alamofire */,
+			);
 			productName = VkLoginApp;
 			productReference = 3C2DAAA02717171400D0554E /* VkLoginApp.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +246,9 @@
 				Base,
 			);
 			mainGroup = 3C2DAA972717171400D0554E;
+			packageReferences = (
+				3CCBC0A0272AA33200747BC7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 3C2DAAA12717171400D0554E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,10 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C9502F2271FEF570095D92F /* User.swift in Sources */,
+				3CCBC09D2729D36800747BC7 /* Session.swift in Sources */,
 				3C9502FD271FF8B40095D92F /* Groupe.swift in Sources */,
 				3C2DAAA82717171400D0554E /* ViewController.swift in Sources */,
 				3C2DAAA42717171400D0554E /* AppDelegate.swift in Sources */,
 				3C9503122722C44A0095D92F /* NewsCell.swift in Sources */,
+				3CCBC09F272A838F00747BC7 /* TetsUrlSession.swift in Sources */,
+				3CCBC0A4272AA8E000747BC7 /* VKService.swift in Sources */,
 				3C95030B2722BCE70095D92F /* News.swift in Sources */,
 				3C9502FF271FFB720095D92F /* AllGroupTableViewController.swift in Sources */,
 				3C950301271FFECD0095D92F /* PhotoCollectionViewController.swift in Sources */,
@@ -476,6 +516,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3CCBC0A0272AA33200747BC7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3CCBC0A1272AA33300747BC7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CCBC0A0272AA33200747BC7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3C2DAA982717171400D0554E /* Project object */;
 }

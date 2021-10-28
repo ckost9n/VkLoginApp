@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -17,23 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4J-66-n08">
-                                <rect key="frame" x="173.5" y="432.5" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="doneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uej-jh-k0x"/>
-                                    <segue destination="FKv-Ne-MpC" kind="show" id="PdT-Sk-Hr6"/>
-                                </connections>
-                            </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWy-N2-Euy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="I4J-66-n08" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1UG-TM-lUG"/>
-                            <constraint firstItem="I4J-66-n08" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5HD-V3-JdD"/>
+                            <constraint firstItem="zWy-N2-Euy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ACT-Jx-Dre"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zWy-N2-Euy" secondAttribute="trailing" id="D3J-We-nJW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zWy-N2-Euy" secondAttribute="bottom" id="ERZ-Cj-dZ4"/>
+                            <constraint firstItem="zWy-N2-Euy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eBb-aS-sW6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="zWy-N2-Euy" id="vqK-nz-43R"/>
+                        <segue destination="FKv-Ne-MpC" kind="presentation" identifier="home" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="lmT-BI-JHx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +49,7 @@
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="jgk-DG-GGD" customClass="MyGroupTableViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wiD-Ft-0LI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -106,7 +111,7 @@
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="R4L-4v-a38" customClass="AllGroupTableViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="5Fz-0x-ws8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -164,7 +169,7 @@
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="pJ2-P7-dvA" customClass="NewsTableViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="MZa-r0-BJC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -172,19 +177,19 @@
                             <outlet property="delegate" destination="pJ2-P7-dvA" id="mgh-zg-6y9"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="News" selectedImage="newspaper" catalog="system" id="bJT-Z0-qXA"/>
+                    <tabBarItem key="tabBarItem" title="News" image="newspaper" catalog="system" selectedImage="newspaper" id="bJT-Z0-qXA"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cPR-aJ-zan" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="816" y="756"/>
         </scene>
-        <!--Groupe-->
+        <!--Группы-->
         <scene sceneID="qMO-lq-fFt">
             <objects>
                 <navigationController modalPresentationStyle="fullScreen" id="hxt-64-NVe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groupe" selectedImage="person.3.fill" catalog="system" id="LeV-vB-YAo"/>
+                    <tabBarItem key="tabBarItem" title="Группы" image="person.3.fill" catalog="system" selectedImage="person.3.fill" id="LeV-vB-YAo"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cFP-Zs-rdU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -200,7 +205,7 @@
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="rrp-Oa-Gug" customClass="FriendsTableViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="xia-w3-Zur">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -257,7 +262,7 @@
             <objects>
                 <collectionViewController modalPresentationStyle="fullScreen" id="2Gs-e2-cuc" customClass="PhotoCollectionViewController" customModule="VkLoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lKK-LF-Y2H">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kt7-c8-XLf">
@@ -301,13 +306,13 @@
             </objects>
             <point key="canvasLocation" x="3516" y="-253"/>
         </scene>
-        <!--Friends-->
+        <!--Мои друзья-->
         <scene sceneID="cfq-vU-4Kk">
             <objects>
                 <navigationController modalPresentationStyle="fullScreen" id="EEf-l8-K8U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" selectedImage="person.fill.checkmark" catalog="system" id="dbL-IS-1PC"/>
+                    <tabBarItem key="tabBarItem" title="Мои друзья" image="person.fill.checkmark" catalog="system" selectedImage="person.fill.checkmark" id="dbL-IS-1PC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GrV-Ug-Z09">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
