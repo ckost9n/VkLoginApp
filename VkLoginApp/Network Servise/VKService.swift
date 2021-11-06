@@ -14,76 +14,90 @@ class VKService {
     
     enum VKMethod {
         case friends
-        case photos
+        case photos(id: String)
         case group
-        case groupSearch
+        case groupSearch(text: String)
+        
+        var path: String {
+            switch self {
+            case .friends:
+                return "friends.get"
+            case .photos:
+                return "photos.getAll"
+            case .group:
+                return "groups.get"
+            case .groupSearch:
+                return "groups.search"
+            }
+        }
+        
+        
     }
     
-    func getData(_ method: VKMethod, groupSearch: String = "", complition: @escaping ([Friend]) -> Void) {
+    func getData(_ method: VKMethod, groupSearch: String = "", complition: @escaping (Data?) -> Void) {
         
-        var vkMethod = ""
+        let urlPath = "https://api.vk.com/method/" + method.path
+        var parameters: Parameters = [
+            "access_token": session.token,
+            "v": "5.81"
+        ]
         
         switch method {
         case .friends:
-            vkMethod = "friends.get"
-        case .photos:
-            vkMethod = "photos.getAll"
+            parameters["fields"] = "nickname,photo_50"
+        case let .photos(id):
+            parameters["owner_id"] = id
         case .group:
-            vkMethod = "groups.get"
-        case .groupSearch:
-            vkMethod = "groups.search"
+            parameters["extended"] = "1"
+        case let .groupSearch(text):
+            parameters["q"] = text
         }
         
-        let urlPath = "https://api.vk.com/method/" + vkMethod
-        var parameters: Parameters = [
-            "access_token": session.token,
-            "v": "5.81",
-            "fields": "nickname,photo_50"
-        ]
-        if method == .groupSearch {
-            parameters["q"] = groupSearch
-        }
-        
-//        AF.request(urlPath, parameters: parameters).responseJSON { (response) in
-//            print(response.value ?? "No json")
-//            do {
-//                print(users.response.friends)
-//            } catch {
-//                print(error)
-//            }
-//
-//        }
-        
-//        let request = AF.request(urlPath, parameters: parameters)
-//            request.responseJSON { (data) in
-//              print(data)
-//            }
-//
-//        request.responseDecodable(of: UserNew.self) { (response) in
-//          guard let friendsResponse = response.value else { return }
-//            print(friendsResponse.response.friends[1].firstName)
-//        }
+//        print(urlPath)
+//        print(session.token)
         
         AF.request(urlPath, parameters: parameters).responseData { (response) in
             if let data = response.value {
-                do {
-                    let friends = try JSONDecoder().decode(UserNew.self, from: data).response.friends
-                    complition(friends)
-                } catch {
-                    print(error)
-                    complition([])
-                }
+                complition(data)
             }
             
         }
         
-//        AF.request(urlPath, parameters: parameters).responseDecodable(of: UserNew.self) { (response) in
-//          guard let responseData = response.value else { return }
-//            print(responseData.response.friends[1].firstName)
-//        }
-
-        
     }
     
+    func getFriends(complition: @escaping ([Friend]) -> Void) {
+        getData(.friends) { (data) in
+            guard let data = data else {
+                complition([])
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(VKResponse<Friend>.self, from: data).items
+                complition(response)
+            } catch {
+                print(error.localizedDescription)
+                complition([])
+            }
+            
+        }
+    }
     
+    func getPhoto(id: String, complition: @escaping ([Photo]) -> Void) {
+        getData(.photos(id: id)) { (data) in
+            guard let data = data else {
+                complition([])
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(VKResponse<Photo>.self, from: data).items
+                complition(response)
+            } catch {
+                print(error.localizedDescription)
+                complition([])
+            }
+            
+        }
+    }
+    
+  
 }

@@ -11,10 +11,19 @@ private let reuseIdentifier = "imageCell"
 
 class PhotoCollectionViewController: UICollectionViewController {
     
-    var user: User? = nil
+    lazy var service = VKService()
+    
+    var userId: String? = nil
+    var photos: [Photo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        service.getPhoto(id: userId!) { [weak self] (photo) in
+            self!.photos = photo
+            self!.collectionView.reloadData()
+        }
+    
     }
 
     /*
@@ -34,14 +43,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return user!.image.count
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! PhotoCell
     
-        cell.imageUser.image = user?.image[indexPath.row]
-        print(user!.fullName)
+        cell.configure(photo: photos[indexPath.row])
         
         return cell
     }
