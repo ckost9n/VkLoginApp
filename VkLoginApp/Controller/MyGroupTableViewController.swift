@@ -16,8 +16,13 @@ class MyGroupTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        service.getData(.group) { (group) in
-            print(group)
+//        service.getData(.group) { (group) in
+//            print(group)
+//        }
+        
+        service.getGroup { [weak self] (group) in
+            self?.myGroup = group
+            self?.tableView.reloadData()
         }
         
     }
@@ -27,13 +32,13 @@ class MyGroupTableViewController: UITableViewController {
             let allGroupVC = segue.source as? AllGroupTableViewController,
             let indexPath = allGroupVC.tableView.indexPathForSelectedRow
         else { return }
-        let group = allGroupVC.isFiltering ? allGroupVC.filteredGroup[indexPath.row] : allGroupVC.allGroup[indexPath.row]
-        
-        for newGroup in myGroup {
-            guard newGroup.name != group.name  else { return }
-        }
-        
-        myGroup.append(group)
+//        let group = allGroupVC.isFiltering ? allGroupVC.filteredGroup[indexPath.row] : allGroupVC.allGroup[indexPath.row]
+//        
+//        for newGroup in myGroup {
+//            guard newGroup.name != group.name  else { return }
+//        }
+//        
+//        myGroup.append(group)
         tableView.reloadData()
         
     }
@@ -62,9 +67,11 @@ class MyGroupTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myGroupCell", for: indexPath) as! UserCell
         
         let group = myGroup[indexPath.row]
+        
+        cell.configureGroup(group: group)
 
-        cell.nameLabel.text = group.name
-        cell.imageUser.image = group.image
+//        cell.nameLabel.text = group.name
+//        cell.imageUser.image = group.photo50
 
         return cell
     }

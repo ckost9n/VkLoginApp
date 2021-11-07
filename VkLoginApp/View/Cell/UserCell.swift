@@ -26,5 +26,14 @@ class UserCell: UITableViewCell {
         }
         
     }
+    
+    func configureGroup(group: Group) {
+        nameLabel.text = group.name
+        
+        if let url = URL(string: group.photo50) {
+            imageUser.kf.setImage(with: url)
+        }
+        
+    }
 
 }

@@ -99,5 +99,38 @@ class VKService {
         }
     }
     
+    func getGroup(complition: @escaping ([Group]) -> Void) {
+        getData(.group) { (data) in
+            guard let data = data else {
+                complition([])
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(VKResponse<Group>.self, from: data).items
+                complition(response)
+            } catch {
+                print(error.localizedDescription)
+                complition([])
+            }
+            
+        }
+    }
+    
+    func getAllGroup(searchGroup: String, complition: @escaping ([Group]) -> Void) {
+        getData(.groupSearch(text: searchGroup)) { (data) in
+            guard let data = data else {
+                complition([])
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(VKResponse<Group>.self, from: data).items
+                complition(response)
+            } catch {
+                print(error.localizedDescription)
+                complition([])
+            }
+            
+        }
+    }
   
 }

@@ -11,6 +11,9 @@ private let reuseIdentifier = "imageCell"
 
 class PhotoCollectionViewController: UICollectionViewController {
     
+//    let itemsPerRow: CGFloat = 2
+//    let sectionInsert = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    
     lazy var service = VKService()
     
     var userId: String? = nil
@@ -23,7 +26,7 @@ class PhotoCollectionViewController: UICollectionViewController {
             self!.photos = photo
             self!.collectionView.reloadData()
         }
-    
+
     }
 
     /*
@@ -86,3 +89,27 @@ class PhotoCollectionViewController: UICollectionViewController {
     */
 
 }
+
+//extension PhotoCollectionViewController: UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let paddinWidth = sectionInsert.left * (itemsPerRow + 1)
+//        let availabelWidth = collectionView.frame.width - paddinWidth
+//        let widthPerItem = availabelWidth / itemsPerRow
+//        return CGSize(width: widthPerItem, height: widthPerItem)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return sectionInsert
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInsert.left
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInsert.left
+//    }
+//
+//}
