@@ -74,15 +74,7 @@ extension NewsTableViewController: UICollectionViewDelegate, UICollectionViewDat
         let newsModel = newsFake[collectionView.tag]
         let image = newsFake[collectionView.tag].images[indexPath.row]
         
-        if let url = URL(string: image) {
-            cell.photoImageView.kf.setImage(with: url)
-        }
-        
-        if indexPath.row == Constants.maxPhotos - 1 {
-            let count = (newsModel.images.count) - Constants.maxPhotos
-            cell.countLabel.text = "+\(count)"
-            cell.containerView.isHidden = count == 0
-        }
+        cell.configure(newsModel, image, indexPath: indexPath)
         
         return cell
     }
@@ -103,8 +95,6 @@ extension NewsTableViewController {
             
             var sourceIdStr = String(item.sourceID)
             
-            
-            
             if sourceIdStr.first != "-" {
                 for userNew in users {
                     if userNew.id == item.sourceID {
@@ -112,8 +102,6 @@ extension NewsTableViewController {
                         var images: [String] = []
                         if let attachments = item.attachments {
                             for itemAttachment in attachments {
-                                
-                                
                                 guard let stringPhoto = itemAttachment.photo?.sizes else { continue }
                                 let photoSize = stringPhoto.sorted { $0.height > $1.height }
                                 
