@@ -32,7 +32,6 @@
 		3C9503162722DE970095D92F /* PhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9503142722DE970095D92F /* PhotoCollectionCell.swift */; };
 		3C9503172722DE970095D92F /* PhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C9503152722DE970095D92F /* PhotoCollectionCell.xib */; };
 		3CCBC09D2729D36800747BC7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC09C2729D36800747BC7 /* Session.swift */; };
-		3CCBC09F272A838F00747BC7 /* TetsUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */; };
 		3CCBC0A2272AA33300747BC7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3CCBC0A1272AA33300747BC7 /* Alamofire */; };
 		3CCBC0A4272AA8E000747BC7 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBC0A3272AA8E000747BC7 /* VKService.swift */; };
 		3CCBC0A7272AAB5600747BC7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCBC0A6272AAB5600747BC7 /* WebKit.framework */; };
@@ -65,7 +64,6 @@
 		3C9503142722DE970095D92F /* PhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionCell.swift; sourceTree = "<group>"; };
 		3C9503152722DE970095D92F /* PhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionCell.xib; sourceTree = "<group>"; };
 		3CCBC09C2729D36800747BC7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetsUrlSession.swift; sourceTree = "<group>"; };
 		3CCBC0A3272AA8E000747BC7 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		3CCBC0A6272AAB5600747BC7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -121,7 +119,6 @@
 				3CCBC09C2729D36800747BC7 /* Session.swift */,
 				3C20D4A42736A1F0003F282C /* VKResponse.swift */,
 				3CCBC0A3272AA8E000747BC7 /* VKService.swift */,
-				3CCBC09E272A838F00747BC7 /* TetsUrlSession.swift */,
 			);
 			path = "Network Servise";
 			sourceTree = "<group>";
@@ -295,7 +292,6 @@
 				3C20D4A327368A20003F282C /* Photo.swift in Sources */,
 				3C2DAAA42717171400D0554E /* AppDelegate.swift in Sources */,
 				3C9503122722C44A0095D92F /* NewsCell.swift in Sources */,
-				3CCBC09F272A838F00747BC7 /* TetsUrlSession.swift in Sources */,
 				3C20D4A52736A1F0003F282C /* VKResponse.swift in Sources */,
 				3CCBC0A4272AA8E000747BC7 /* VKService.swift in Sources */,
 				3C95030B2722BCE70095D92F /* News.swift in Sources */,

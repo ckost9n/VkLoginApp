@@ -17,6 +17,7 @@ class VKService {
         case photos(id: String)
         case group
         case groupSearch(text: String)
+        case newsFeed
         
         var path: String {
             switch self {
@@ -28,6 +29,8 @@ class VKService {
                 return "groups.get"
             case .groupSearch:
                 return "groups.search"
+            case .newsFeed:
+                return "newsfeed.get"
             }
         }
         
@@ -51,6 +54,8 @@ class VKService {
             parameters["extended"] = "1"
         case let .groupSearch(text):
             parameters["q"] = text
+        case .newsFeed:
+            parameters["filters"] = "post"
         }
         
 //        print(urlPath)
@@ -128,6 +133,22 @@ class VKService {
             } catch {
                 print(error.localizedDescription)
                 complition([])
+            }
+            
+        }
+    }
+    
+    func getNews(complition: @escaping (NewsResponse) -> Void) {
+        getData(.newsFeed) { (data) in
+            guard let data = data else {
+                print("Error! Данные не получены")
+                return
+            }
+            do {
+                let response = try JSONDecoder().decode(NewsItem.self, from: data).response
+                complition(response)
+            } catch {
+                print(error.localizedDescription)
             }
             
         }

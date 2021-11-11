@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import Kingfisher
 
 class NewsCell: UITableViewCell {
     
@@ -52,10 +54,24 @@ class NewsCell: UITableViewCell {
         }
     }
     
+    
+    
     func configure(model: News) {
         mainImageView.image = model.images.first
         autorLabel.text = model.autor
         dateLabel.text = model.postDate
+        newsText.text = model.text
+        likeCount.text = String(model.likeCount)
+        
+        collectionView.register(UINib(nibName: "PhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: "photoCollectionCell")
+    }
+    
+    func configureFake(model: NewsFake) {
+        if let url = URL(string: model.avatar) {
+            mainImageView.kf.setImage(with: url)
+        }
+        autorLabel.text = model.autor
+        dateLabel.text = dateConvert(model.postDate)
         newsText.text = model.text
         likeCount.text = String(model.likeCount)
         
@@ -68,6 +84,21 @@ class NewsCell: UITableViewCell {
         collectionView.tag = row
         collectionView.reloadData()
     }
-
     
+    func dateConvert(_ dateStr: String) -> String {
+        
+        guard let date = Int(dateStr) else { return "Давно"}
+        
+        let timeInterval = TimeInterval(date)
+        let myDate = Date(timeIntervalSince1970: timeInterval)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .none
+         
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        
+        return dateFormatter.string(from: myDate)
+    }
+   
 }

@@ -30,7 +30,7 @@ class MyGroupTableViewController: UITableViewController {
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
         guard
             let allGroupVC = segue.source as? AllGroupTableViewController,
-            let indexPath = allGroupVC.tableView.indexPathForSelectedRow
+            let _ = allGroupVC.tableView.indexPathForSelectedRow
         else { return }
 //        let group = allGroupVC.isFiltering ? allGroupVC.filteredGroup[indexPath.row] : allGroupVC.allGroup[indexPath.row]
 //        

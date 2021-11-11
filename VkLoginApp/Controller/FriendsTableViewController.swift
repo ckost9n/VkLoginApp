@@ -32,10 +32,13 @@ class FriendsTableViewController: UITableViewController {
         setupSearchController()
         
         service.getFriends { [weak self] (friends) in
-            self?.friends = friends.sorted { $0.lastName < $1.lastName }
+            self?.friends = friends
+                .filter { $0.deactivated != "deleted" }
+                .sorted { $0.lastName < $1.lastName }
             let leterUser = self?.friends.map ({ String($0.lastName.prefix(1).capitalized) })
             self?.sectionsFriend = Array(Set(leterUser!)).sorted()
             self?.tableView.reloadData()
+            //            print(Session.shared.token)
         }
     }
     

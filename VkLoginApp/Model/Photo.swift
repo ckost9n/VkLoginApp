@@ -50,19 +50,26 @@ class Photo: Decodable {
 class Size: Decodable {
     let height: Int
     let url: String
-    let type: TypeEnum
+//    let type: TypeEnum
     let width: Int
 }
 
-enum TypeEnum: String, Codable {
-    case m = "m"
-    case o = "o"
-    case p = "p"
-    case q = "q"
-    case r = "r"
-    case s = "s"
-    case w = "w"
-    case x = "x"
-    case y = "y"
-    case z = "z"
-}
+//enum TypeEnum: String, Codable {
+//    case a = "a"
+//    case b = "b"
+//    case c = "c"
+//    case d = "d"
+//    case e = "e"
+//    case k = "k"
+//    case l = "l"
+//    case m = "m"
+//    case o = "o"
+//    case p = "p"
+//    case q = "q"
+//    case r = "r"
+//    case s = "s"
+//    case w = "w"
+//    case x = "x"
+//    case y = "y"
+//    case z = "z"
+//}

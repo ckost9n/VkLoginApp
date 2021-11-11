@@ -29,8 +29,8 @@ struct Friend: Decodable {
     let id: Int
     let lastName: String
     let photo50: String
-    let nickname: String?
-    let trackCode: String
+//    let nickname: String?
+//    let trackCode: String
     let deactivated: String?
     
     var fullName: String {
@@ -42,8 +42,8 @@ struct Friend: Decodable {
         case id
         case lastName = "last_name"
         case photo50 = "photo_50"
-        case nickname
-        case trackCode = "track_code"
+//        case nickname
+//        case trackCode = "track_code"
         case deactivated
     }
 }

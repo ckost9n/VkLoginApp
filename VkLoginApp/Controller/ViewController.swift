@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        cleanWebViewCookies()    // Откл. автоматический вхов в веб форму
-//        TestUrlSession.shared.getPost()
         loadVKAuth()
         
     }
@@ -35,7 +34,7 @@ class ViewController: UIViewController {
             URLQueryItem(name: "client_id", value: "7553465"),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "scope", value: "404959"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.68")
         ]
@@ -44,20 +43,6 @@ class ViewController: UIViewController {
         
         let request = URLRequest(url: url)
         webView.load(request)
-        
-//        let urlPath = "https://oauth.vk.com/authorize"
-//        let patameters: Parameters = [
-//            "client_id": "7553465",
-//            "display": "mobile",
-//            "redirect_uri": "https://oauth.vk.com/blank.html",
-//            "scope": "https://oauth.vk.com/blank.html",
-//            "redirect_uri": "262150",
-//            "response_type": "token",
-//            "v": "5.68"
-//        ]
-//
-//
-//        let request1 = AF.request(urlPath, parameters: patameters)
     }
 
 }
